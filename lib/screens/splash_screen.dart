@@ -29,7 +29,6 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller.forward();
 
-    // Navigate to next screen after 4 seconds
     Timer(const Duration(seconds: 4), () {
       Navigator.pushReplacementNamed(context, '/login');
     });
@@ -61,7 +60,21 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 40),
+                // Launcher Icon
+                Container(
+                  width: 90,
+                  height: 90,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: AssetImage('assets/icon.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
                 const Text(
                   'CareConnect',
                   style: TextStyle(
@@ -70,7 +83,9 @@ class _SplashScreenState extends State<SplashScreen>
                     color: Color(0xFF2E3A59),
                   ),
                 ),
-                const SizedBox(height: 250),
+
+                const SizedBox(height: 200),
+
                 const Text(
                   'Loading your experience...',
                   style: TextStyle(

@@ -4,7 +4,6 @@ import 'package:hospital_management_service_app/screens/doctor/doctor_main_scree
 import 'package:hospital_management_service_app/screens/patient/patient_main_screen.dart';
 import 'package:hospital_management_service_app/services/auth_services.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -21,64 +20,61 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // LOGIN
   Future<void> _loginUser(BuildContext context) async {
-  if (selectedRole.value == null) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Please select a role')),
-    );
-    return;
-  }
-
-  try {
-    User? user = await _authService.signIn(
-      _emailController.text.trim(),
-      _passwordController.text.trim(),
-      selectedRole.value!,
-    );
-
-    if (user == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid credentials.')),
-      );
+    if (selectedRole.value == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please select a role')));
       return;
     }
 
-    // Get role from Firestore
-    String? role = await _authService.getUserRole(user.uid);
+    try {
+      User? user = await _authService.signIn(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+        selectedRole.value!,
+      );
 
-    if (role == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('User role not found.')),
-      );
-      return;
-    }
+      if (user == null) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Invalid credentials.')));
+        return;
+      }
 
-    //  SAVE FCM TOKEN BASED ON ROLE
-    if (role == 'Doctor') {
-      Navigator.pushReplacement(
+      // Get role from Firestore
+      String? role = await _authService.getUserRole(user.uid);
+
+      if (role == null) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('User role not found.')));
+        return;
+      }
+
+      //  SAVE FCM TOKEN BASED ON ROLE
+      if (role == 'Doctor') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => DoctorMainScreen(userName: user.email ?? ''),
+          ),
+        );
+      } else if (role == 'Patient') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (_) => PatientMainScreen()),
+        );
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Unknown role.')));
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(
         context,
-        MaterialPageRoute(
-          builder: (_) => DoctorMainScreen(userName: user.email ?? ''),
-        ),
-      );
-    } else if (role == 'Patient') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => PatientMainScreen(),
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Unknown role.')),
-      );
+      ).showSnackBar(SnackBar(content: Text('Login failed: $e')));
     }
-  } catch (e) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Login failed: $e')),
-    );
   }
-}
-
 
   /// FORGOT PASSWORD
   Future<void> _resetPassword(BuildContext context) async {
@@ -99,9 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: $e')));
     }
   }
 
@@ -115,14 +111,20 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 35,
-                backgroundColor: Colors.white,
-                child: Icon(Icons.local_hospital, color: Colors.blue, size: 40),
+              Container(
+                width: 80,
+                height: 80,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/icon.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               const SizedBox(height: 16),
               const Text(
-                "Hospital Login",
+                "CareConnect Login",
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 25),
@@ -285,13 +287,13 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  @override
-void dispose() {
-  _emailController.dispose();
-  _passwordController.dispose();
-  selectedRole.dispose();
-  obscurePassword.dispose();
-  super.dispose();
-}
 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    selectedRole.dispose();
+    obscurePassword.dispose();
+    super.dispose();
+  }
 }

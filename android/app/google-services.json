@@ -7,6 +7,25 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:422479867383:android:8da4a7a0339217447952f2",
+        "android_client_info": {
+          "package_name": "apps.service.careconnect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa4DIeTIFvE4Kc9m9IsFy-ca0ElQJWz_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:422479867383:android:9ce840419d31bb357952f2",
         "android_client_info": {
           "package_name": "com.example.hospital_management"

@@ -78,10 +78,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
-                radius: 35,
-                backgroundColor: Colors.white,
-                child: Icon(Icons.local_hospital, color: Colors.blue, size: 40),
+              Container(
+                width: 80,
+                height: 80,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    image: AssetImage('assets/icon.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               const SizedBox(height: 16),
               const Text(
@@ -211,20 +217,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const SizedBox(height: 25),
 
-              ElevatedButton(
-                onPressed: _signUpUser,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(vertical: 14),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _signUpUser,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: const Text(
+                    "Sign Up",
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
-                child: const Text(
-                  "Sign Up",
-                  style: TextStyle(color: Colors.white),
-                ),
               ),
+
               const SizedBox(height: 15),
 
               GestureDetector(
@@ -240,6 +250,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
   @override
   void dispose() {
     _fullNameController.dispose();
@@ -247,5 +258,5 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordController.dispose();
     _confirmPasswordController.dispose();
     super.dispose();
-}
+  }
 }
