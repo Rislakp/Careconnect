@@ -12,8 +12,10 @@ class LatestAppointmentsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Latest Appointments",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const Text(
+          "Latest Appointments",
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
         if (dp.latestAppointments.isEmpty)
           const Padding(
             padding: EdgeInsets.all(8),
@@ -30,8 +32,9 @@ class LatestAppointmentsSection extends StatelessWidget {
                 child: ListTile(
                   leading: const Icon(Icons.person),
                   title: Text(a['patientName'] ?? 'Patient'),
-                  subtitle:
-                      Text("${d.day}/${d.month}/${d.year} • ${a['time']}"),
+                  subtitle: Text(
+                    "${d.day}/${d.month}/${d.year} • ${a['time']}",
+                  ),
                   trailing: statusChip(a['status']),
                 ),
               );

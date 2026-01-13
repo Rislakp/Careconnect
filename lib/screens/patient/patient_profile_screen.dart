@@ -28,7 +28,7 @@ class PatientProfileScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        title: const Text("My Profile"),
+        title: const Text(" Profile"),
         backgroundColor: Colors.blue.shade400,
         elevation: 0,
         actions: [

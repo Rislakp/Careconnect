@@ -26,7 +26,7 @@ class PatientChatListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chats with Doctors'),
+        title: Text('Chats'),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
       ),
@@ -92,7 +92,7 @@ class PatientChatListScreen extends StatelessWidget {
                         ),
                       ),
                       title: Text(
-                        'Dr. $doctorName',
+                        ' $doctorName',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
