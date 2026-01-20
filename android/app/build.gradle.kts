@@ -13,7 +13,7 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 }
   android {
-    namespace = "com.example.hospital_management_service_app"
+    namespace = "com.service.careconnect"
     compileSdk = 35
     ndkVersion = "27.0.12077973"
 
@@ -28,11 +28,11 @@ if (keystorePropertiesFile.exists()) {
     }
 
     defaultConfig {
-        applicationId = "apps.service.careconnect"
+        applicationId = "com.service.careconnect"
         minSdk = 23
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        targetSdk = 35
+        versionCode = 2
+        versionName = "1.0.1"
     }
     signingConfigs {
         create("release") {

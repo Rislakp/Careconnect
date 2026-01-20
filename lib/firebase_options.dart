@@ -64,7 +64,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '422479867383',
     projectId: 'careconnect-7dd45',
     storageBucket: 'careconnect-7dd45.firebasestorage.app',
-    iosBundleId: 'com.example.hospitalManagementServiceApp',
+    iosBundleId: 'com.service.careconnect',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -73,7 +73,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '422479867383',
     projectId: 'careconnect-7dd45',
     storageBucket: 'careconnect-7dd45.firebasestorage.app',
-    iosBundleId: 'com.example.hospitalManagementServiceApp',
+    iosBundleId: 'com.service.careconnect',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
